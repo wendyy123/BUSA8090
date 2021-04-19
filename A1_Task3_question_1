@@ -1,0 +1,18 @@
+# BUSA8090 Assignment 1 task 3 - Question 1
+
+# 1a 
+curl https://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/expression.tab > expression
+
+# 1b
+curl https://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/annotation.tab > annotation
+
+# 1c 
+#sort files before joining
+join -o 1.1,2.2,1.2,2.3 <(sort -n expression) <(sort -n annotation)
+
+# 1d (ii)
+# find duplicate metabolisms in annotation
+select metabolism, COUNT(*) as totalcount
+    -> from annotation
+    -> group by metabolism
+    -> having count(*) > 1;
